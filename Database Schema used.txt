@@ -1,0 +1,65 @@
+Database Schema:
+Tables:
+Users:
+UserID (Primary Key)
+Username
+Password
+Email
+UserType (Enum: 'Patient', 'Doctor', 'Admin')
+Patients:
+PatientID (Primary Key)
+UserID (Foreign Key to Users)
+Name
+Address
+ContactInformation
+Doctors:
+DoctorID (Primary Key)
+UserID (Foreign Key to Users)
+Name
+Specialization
+ContactInformation
+Admins:
+AdminID (Primary Key)
+UserID (Foreign Key to Users)
+Name
+ContactInformation
+Products:
+ProductID (Primary Key)
+Name
+Description
+Price
+QuantityAvailable
+Orders:
+OrderID (Primary Key)
+UserID (Foreign Key to Users)
+OrderDate
+TotalAmount
+OrderDetails:
+OrderDetailID (Primary Key)
+OrderID (Foreign Key to Orders)
+ProductID (Foreign Key to Products)
+Quantity
+Subtotal
+Appointments:
+AppointmentID (Primary Key)
+PatientID (Foreign Key to Patients)
+DoctorID (Foreign Key to Doctors)
+AppointmentDateTime
+Status (Enum: 'Scheduled', 'Completed', 'Canceled')
+Prescriptions:
+PrescriptionID (Primary Key)
+PatientID (Foreign Key to Patients)
+DoctorID (Foreign Key to Doctors)
+PrescriptionDate
+PrescriptionDetails
+Triggers:
+check_order_total_insert: Ensures the order total is non-negative before insertion.
+check_order_total_update: Ensures the order total remains non-negative during updates.
+prevent_delete_doctor_with_appointments: Prevents deletion of doctors with existing appointments.
+audit_orders, audit_orders_update, audit_orders_delete: Creates an audit trail for orders (insert, update, delete).
+This database schema enables the management of various aspects of an e-commerce healthcare platform, facilitating user management, product listings, order processing, appointment scheduling, and prescription management.
+
+
+
+
+
